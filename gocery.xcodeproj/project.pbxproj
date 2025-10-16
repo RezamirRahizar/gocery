@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3DA305112EA1B6FC0042080A /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA305102EA1B6FC0042080A /* RxBlocking */; };
+		3DA305132EA1B6FC0042080A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA305122EA1B6FC0042080A /* RxCocoa */; };
+		3DA305152EA1B6FC0042080A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA305142EA1B6FC0042080A /* RxRelay */; };
+		3DA305172EA1B6FC0042080A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA305162EA1B6FC0042080A /* RxSwift */; };
+		3DA305192EA1B6FC0042080A /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA305182EA1B6FC0042080A /* RxTest */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3DA304BF2EA0E30D0042080A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +60,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DA305152EA1B6FC0042080A /* RxRelay in Frameworks */,
+				3DA305132EA1B6FC0042080A /* RxCocoa in Frameworks */,
+				3DA305172EA1B6FC0042080A /* RxSwift in Frameworks */,
+				3DA305112EA1B6FC0042080A /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DA305192EA1B6FC0042080A /* RxTest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +125,10 @@
 			);
 			name = gocery;
 			packageProductDependencies = (
+				3DA305102EA1B6FC0042080A /* RxBlocking */,
+				3DA305122EA1B6FC0042080A /* RxCocoa */,
+				3DA305142EA1B6FC0042080A /* RxRelay */,
+				3DA305162EA1B6FC0042080A /* RxSwift */,
 			);
 			productName = gocery;
 			productReference = 3DA304AC2EA0E3090042080A /* gocery.app */;
@@ -135,6 +152,7 @@
 			);
 			name = goceryTests;
 			packageProductDependencies = (
+				3DA305182EA1B6FC0042080A /* RxTest */,
 			);
 			productName = goceryTests;
 			productReference = 3DA304BE2EA0E30D0042080A /* goceryTests.xctest */;
@@ -195,6 +213,9 @@
 			);
 			mainGroup = 3DA304A32EA0E3090042080A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3DA3050F2EA1B6FC0042080A /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3DA304AD2EA0E3090042080A /* Products */;
 			projectDirPath = "";
@@ -617,6 +638,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3DA3050F2EA1B6FC0042080A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3DA305102EA1B6FC0042080A /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DA3050F2EA1B6FC0042080A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		3DA305122EA1B6FC0042080A /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DA3050F2EA1B6FC0042080A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		3DA305142EA1B6FC0042080A /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DA3050F2EA1B6FC0042080A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		3DA305162EA1B6FC0042080A /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DA3050F2EA1B6FC0042080A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		3DA305182EA1B6FC0042080A /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DA3050F2EA1B6FC0042080A /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3DA304A42EA0E3090042080A /* Project object */;
 }
