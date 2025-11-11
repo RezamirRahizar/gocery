@@ -12,13 +12,13 @@ final class AppCoordinator: ObservableObject {
     @Published var path = NavigationPath()
     
     func start() -> some View {
-        UserListView(viewModel: UserListViewModel()) { user in
-            self.showUserDetail(for: user)
-        }
-        .navigationDestination(for: User.self) { user in
-            UserDetailView(viewModel: UserDetailViewModel(user: user))
-            
-        }
+//        UserListView(viewModel: UserListViewModel()) { user in
+//            self.showUserDetail(for: user)
+//        }
+        UserListView()
+            .navigationDestination(for: User.self) { user in
+                UserDetailView(viewModel: UserDetailViewModel(user: user))
+            }
     }
     
     private func showUserDetail(for user: User) {

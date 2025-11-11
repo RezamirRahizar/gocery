@@ -18,14 +18,18 @@ final class UserListViewModel: ObservableObject {
     private let disposeBag = DisposeBag()
     
     init() {
-        let rand = Int.random(in: 0...1)
-        switch rand {
+        loadUsers()
+        loadRxUsers()
+    }
+    
+    func getUsers(from index: Int) -> [User] {
+        switch index {
         case 0:
-            loadUsers()
+            return users
         case 1:
-            loadRxUsers()
+            return rxUsers.value
         default:
-            print("Do nothing")
+            return []
         }
     }
     
@@ -43,11 +47,9 @@ final class UserListViewModel: ObservableObject {
     private func loadRxUsers() {
         print("Loading Rx Users")
         Observable.just([
-            User(id: UUID(), name: "John", email: nil),
-            User(id: UUID(), name: "Abdul", email: "abdul@email.com"),
-            User(id: UUID(), name: "Ching", email: "cing@hotmail.com"),
+            User(id: UUID(), name: "Samad", email: "samad@gmail.com"),
         ])
-        .delay(.milliseconds(500), scheduler: MainScheduler.instance)
+//        .delay(.milliseconds(500), scheduler: MainScheduler.instance)
         .bind(to: rxUsers)
         .disposed(by: disposeBag)
     }
