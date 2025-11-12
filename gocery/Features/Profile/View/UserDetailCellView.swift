@@ -10,15 +10,10 @@ import SnapKit
 
 class UserDetailCellView: UITableViewCell {
     public static let identifier: String = "UserDetailCellView"
-    public var user: User? = nil {
-        didSet {
-            userLabel.text = user?.name
-        }
-    }
     
     private lazy var userLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .red
+        label.textColor = .black
         
         return label
     }()
@@ -38,5 +33,9 @@ class UserDetailCellView: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setData(_ user: User) {
+        userLabel.text = user.name
     }
 }

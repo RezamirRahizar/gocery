@@ -13,11 +13,6 @@ import SnapKit
 class UserListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: UserListViewModel
-    private var tempUsers: [User] = [
-        User(id: UUID(), name: "John", email: nil),
-        User(id: UUID(), name: "Abdul", email: "abdul@email.com"),
-        User(id: UUID(), name: "Ching", email: "cing@hotmail.com"),
-    ]
     
     private lazy var headerLabel: UILabel = {
         let label = UILabel()
@@ -29,8 +24,6 @@ class UserListViewController: UIViewController {
     
     private lazy var userTableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(UserDetailCellView.self, forCellReuseIdentifier: UserDetailCellView.identifier)
         
         return tableView
@@ -49,12 +42,31 @@ class UserListViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         layoutViews()
+        bindViewModel()
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.loadUsers()
+    }
+    
     private func bindViewModel() {
-//        userTableView
-//        tempUsers = viewModel.getUsers(from: 1)
+        //Bind table to userList in viewModel
+        viewModel.users
+            .bind(to: userTableView.rx.items(cellIdentifier: UserDetailCellView.identifier, cellType: UserDetailCellView.self)){ row, item, cell in
+            cell.setData(item)
+        }.disposed(by: disposeBag)
+        
+        userTableView.rx.modelSelected(User.self).bind { [weak self] user in
+            guard let self else { return }
+            if let selectedIndexPath = userTableView.indexPathForSelectedRow {
+                userTableView.deselectRow(at: selectedIndexPath, animated: true)
+            }
+            
+            //TODO: Navigate to user detail page/popup
+        }.disposed(by: disposeBag)
+        
     }
     
     private func setupViews() {
@@ -72,32 +84,5 @@ class UserListViewController: UIViewController {
             make.top.equalTo(headerLabel.snp.bottom).offset(16)
             make.bottom.horizontalEdges.equalToSuperview().inset(16)
         }
-    }
-}
-
-extension UserListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //handle navigation to UserDetailViewController
-        guard let cell = userTableView.cellForRow(at: indexPath) as? UserDetailCellView else { return }
-    }
-}
-
-extension UserListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.rxUsers.value.count
-        return tempUsers.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = userTableView.cellForRow(at: indexPath) as? UserDetailCellView else {
-//            return UITableViewCell()
-//        }
-        guard let cell = userTableView.dequeueReusableCell(withIdentifier: UserDetailCellView.identifier, for: indexPath) as? UserDetailCellView else {
-            return UITableViewCell()
-        }
-        
-        cell.user = tempUsers[indexPath.row]
-        
-        return cell
     }
 }
